@@ -1,0 +1,41 @@
+name: Repository hygiene
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: repository-hygiene-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  hygiene:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out the exact revision
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Check patch whitespace
+        run: git diff --check
+
+      - name: Parse tracked JSON
+        shell: python
+        run: |
+          import json
+          import pathlib
+          import subprocess
+
+          output = subprocess.check_output(
+              ["git", "ls-files", "-z", "*.json"], text=False
+          )
+          paths = [pathlib.Path(raw.decode("utf-8")) for raw in output.split(b"\0") if raw]
+          for path in paths:
+              with path.open("r", encoding="utf-8") as handle:
+                  json.load(handle)
+              print(f"parsed {path.as_posix()}")
