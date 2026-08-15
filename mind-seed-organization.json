@@ -1,0 +1,160 @@
+{
+  "$schema": "./schemas/mind-seed-organization.schema.json",
+  "schemaVersion": "mind-seed.organization/v1",
+  "organization": {
+    "id": "mind-seed-systems",
+    "displayName": "Mind Seed Systems",
+    "coreProject": "Mind Seed",
+    "githubUrl": "https://github.com/mind-seed-systems",
+    "visibilityPolicy": "private-by-default",
+    "repositoryNamePattern": "mind-seed-<component>",
+    "preservedRepositoryNames": [
+      ".github",
+      "Mind-Seed"
+    ]
+  },
+  "authorities": {
+    "dynamicRepositoryState": "GitHub API",
+    "repositorySemantics": "mind-seed-organization.json",
+    "organizationArchitecture": "docs/organization-architecture.md",
+    "coreArchitecture": "mind-seed-systems/Mind-Seed"
+  },
+  "repositories": [
+    {
+      "id": "organization-infrastructure",
+      "name": ".github",
+      "url": "https://github.com/mind-seed-systems/.github",
+      "role": "organization-infrastructure",
+      "lifecycle": "active",
+      "visibility": "public",
+      "securityClassification": "public-governance",
+      "releaseStatus": "not-applicable",
+      "defaultBranch": "main",
+      "owners": [
+        "@jikovec"
+      ],
+      "documentation": [
+        {
+          "repository": ".github",
+          "path": "README.md"
+        },
+        {
+          "repository": ".github",
+          "path": "docs/organization-architecture.md"
+        }
+      ]
+    },
+    {
+      "id": "canonical-core",
+      "name": "Mind-Seed",
+      "url": "https://github.com/mind-seed-systems/Mind-Seed",
+      "role": "canonical-core",
+      "lifecycle": "experimental",
+      "visibility": "private",
+      "securityClassification": "private-restricted",
+      "releaseStatus": "internal-unreleased",
+      "defaultBranch": "main",
+      "owners": [
+        "@jikovec"
+      ],
+      "documentation": [
+        {
+          "repository": "Mind-Seed",
+          "path": "README.md"
+        },
+        {
+          "repository": "Mind-Seed",
+          "path": "docs/github-organization.md"
+        }
+      ]
+    }
+  ],
+  "componentDomains": [
+    {
+      "id": "core-runtime",
+      "currentOwner": "canonical-core",
+      "boundary": "current-core"
+    },
+    {
+      "id": "cognition",
+      "currentOwner": "canonical-core",
+      "boundary": "current-core"
+    },
+    {
+      "id": "memory",
+      "currentOwner": "canonical-core",
+      "boundary": "future-extraction-candidate"
+    },
+    {
+      "id": "agent-orchestration",
+      "currentOwner": "canonical-core",
+      "boundary": "current-core"
+    },
+    {
+      "id": "system-integration",
+      "currentOwner": "canonical-core",
+      "boundary": "future-extraction-candidate"
+    },
+    {
+      "id": "interfaces",
+      "currentOwner": "canonical-core",
+      "boundary": "future-extraction-candidate"
+    },
+    {
+      "id": "protocols-and-sdk",
+      "currentOwner": "canonical-core",
+      "boundary": "future-extraction-candidate"
+    },
+    {
+      "id": "research-and-evaluation",
+      "currentOwner": "canonical-core",
+      "boundary": "future-extraction-candidate"
+    },
+    {
+      "id": "website-and-distribution",
+      "currentOwner": "canonical-core",
+      "boundary": "conceptual"
+    },
+    {
+      "id": "security",
+      "currentOwner": "canonical-core",
+      "boundary": "cross-cutting"
+    }
+  ],
+  "externalEntities": [
+    {
+      "id": "nixos-platform",
+      "name": "NixOS",
+      "kind": "platform",
+      "organizationMembership": "external"
+    }
+  ],
+  "relationshipTypes": [
+    "contains",
+    "depends-on",
+    "integrates-with",
+    "implements",
+    "extends",
+    "provides-interface-for",
+    "research-supports",
+    "deployed-by",
+    "supersedes",
+    "related-to"
+  ],
+  "relationships": [
+    {
+      "source": "organization-infrastructure",
+      "type": "provides-interface-for",
+      "target": "canonical-core",
+      "status": "active",
+      "evidence": "docs/organization-architecture.md#current-repository-map"
+    },
+    {
+      "source": "canonical-core",
+      "type": "depends-on",
+      "target": "nixos-platform",
+      "status": "planned",
+      "evidence": "docs/organization-architecture.md#canonical-core-repository"
+    }
+  ]
+}

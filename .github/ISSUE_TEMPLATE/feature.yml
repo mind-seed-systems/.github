@@ -1,0 +1,74 @@
+name: Feature or capability proposal
+description: Propose a capability from a concrete user or system need.
+title: "proposal: "
+labels:
+  - "type:feature"
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: Describe the current limitation or need without assuming a solution.
+    validations:
+      required: true
+  - type: textarea
+    id: capability
+    attributes:
+      label: Proposed capability
+      description: State the observable capability and what remains out of scope.
+    validations:
+      required: true
+  - type: textarea
+    id: value
+    attributes:
+      label: User and system value
+      description: Who benefits, how success is observed, and why this belongs in Mind Seed.
+    validations:
+      required: true
+  - type: checkboxes
+    id: architecture
+    attributes:
+      label: Affected architecture
+      options:
+        - label: Core runtime or cognition
+        - label: Memory or data
+        - label: Agents, tools, or orchestration
+        - label: Integration or protocol
+        - label: NixOS, host, or infrastructure
+        - label: UI or interface
+        - label: Research, evaluation, or documentation
+        - label: Repository or organization ownership
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies and relationships
+      description: Repositories, components, providers, protocols, projects, or decisions affected. Do not paste private source.
+  - type: textarea
+    id: security
+    attributes:
+      label: Security and privacy implications
+      description: Authority, credentials, network, personal data, host access, abuse cases, and revocation.
+    validations:
+      required: true
+  - type: textarea
+    id: memory
+    attributes:
+      label: Memory and data implications
+      description: Ownership, provenance, retrieval, retention, correction, forgetting, migration, and cross-project isolation.
+  - type: textarea
+    id: autonomy
+    attributes:
+      label: Agent and autonomy implications
+      description: Initiative, approvals, delegation, external effects, cancellation, readback, and human control.
+  - type: textarea
+    id: constraints
+    attributes:
+      label: Implementation constraints
+      description: Compatibility, performance, local-first behavior, offline degradation, cost, and evidence gates.
+  - type: textarea
+    id: success
+    attributes:
+      label: Success and non-goals
+      description: Testable outcomes, failure cases, and claims that remain forbidden after success.
+    validations:
+      required: true

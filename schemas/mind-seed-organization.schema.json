@@ -1,0 +1,313 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/mind-seed-systems/.github/main/schemas/mind-seed-organization.schema.json",
+  "title": "Mind Seed Systems organization manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema",
+    "schemaVersion",
+    "organization",
+    "authorities",
+    "repositories",
+    "componentDomains",
+    "externalEntities",
+    "relationshipTypes",
+    "relationships"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "schemaVersion": {
+      "const": "mind-seed.organization/v1"
+    },
+    "organization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "displayName",
+        "coreProject",
+        "githubUrl",
+        "visibilityPolicy",
+        "repositoryNamePattern",
+        "preservedRepositoryNames"
+      ],
+      "properties": {
+        "id": {
+          "const": "mind-seed-systems"
+        },
+        "displayName": {
+          "const": "Mind Seed Systems"
+        },
+        "coreProject": {
+          "const": "Mind Seed"
+        },
+        "githubUrl": {
+          "type": "string",
+          "format": "uri"
+        },
+        "visibilityPolicy": {
+          "enum": [
+            "private-by-default"
+          ]
+        },
+        "repositoryNamePattern": {
+          "type": "string",
+          "minLength": 1
+        },
+        "preservedRepositoryNames": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "authorities": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minProperties": 1
+    },
+    "repositories": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/repository"
+      }
+    },
+    "componentDomains": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/componentDomain"
+      }
+    },
+    "externalEntities": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/externalEntity"
+      }
+    },
+    "relationshipTypes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9-]*$"
+      },
+      "uniqueItems": true
+    },
+    "relationships": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/relationship"
+      }
+    }
+  },
+  "$defs": {
+    "documentationReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "repository",
+        "path"
+      ],
+      "properties": {
+        "repository": {
+          "type": "string",
+          "minLength": 1
+        },
+        "path": {
+          "type": "string",
+          "pattern": "^[^/].+"
+        }
+      }
+    },
+    "repository": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "name",
+        "url",
+        "role",
+        "lifecycle",
+        "visibility",
+        "securityClassification",
+        "releaseStatus",
+        "defaultBranch",
+        "owners",
+        "documentation"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]*$"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "role": {
+          "enum": [
+            "canonical-core",
+            "organization-infrastructure",
+            "component",
+            "integration",
+            "research",
+            "documentation",
+            "website",
+            "infrastructure"
+          ]
+        },
+        "lifecycle": {
+          "enum": [
+            "conceptual",
+            "experimental",
+            "active",
+            "maintenance",
+            "deprecated",
+            "retired"
+          ]
+        },
+        "visibility": {
+          "enum": [
+            "private",
+            "public",
+            "internal"
+          ]
+        },
+        "securityClassification": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]*$"
+        },
+        "releaseStatus": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]*$"
+        },
+        "defaultBranch": {
+          "const": "main"
+        },
+        "owners": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "pattern": "^@[A-Za-z0-9-]+$"
+          },
+          "uniqueItems": true
+        },
+        "documentation": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/documentationReference"
+          }
+        }
+      }
+    },
+    "componentDomain": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "currentOwner",
+        "boundary"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]*$"
+        },
+        "currentOwner": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]*$"
+        },
+        "boundary": {
+          "enum": [
+            "current-core",
+            "future-extraction-candidate",
+            "cross-cutting",
+            "conceptual"
+          ]
+        }
+      }
+    },
+    "externalEntity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "name",
+        "kind",
+        "organizationMembership"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]*$"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]*$"
+        },
+        "organizationMembership": {
+          "const": "external"
+        }
+      }
+    },
+    "relationship": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source",
+        "type",
+        "target",
+        "status",
+        "evidence"
+      ],
+      "properties": {
+        "source": {
+          "type": "string",
+          "minLength": 1
+        },
+        "type": {
+          "type": "string",
+          "minLength": 1
+        },
+        "target": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "enum": [
+            "conceptual",
+            "planned",
+            "experimental",
+            "active",
+            "deprecated",
+            "superseded"
+          ]
+        },
+        "evidence": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}

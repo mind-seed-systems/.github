@@ -1,0 +1,41 @@
+name: Validate organization foundation
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: organization-foundation-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out the exact revision
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Validate organization metadata and links
+        run: python -B scripts/validate_organization.py
+
+      - name: Parse GitHub YAML
+        shell: ruby {0}
+        run: |
+          require "yaml"
+          paths = Dir[".github/**/*.yml", "workflow-templates/*.yml"].sort
+          paths.each do |path|
+            YAML.safe_load_file(path, permitted_classes: [], permitted_symbols: [], aliases: false)
+            puts "parsed #{path}"
+          end
+
+      - name: Check patch whitespace
+        run: git diff --check

@@ -1,0 +1,78 @@
+name: Architecture or RFC proposal
+description: Record a material architectural choice with alternatives and recovery.
+title: "architecture: "
+labels:
+  - "type:architecture"
+  - "state:needs-decision"
+body:
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: Current architecture, evidence, constraints, and ownership boundary.
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What decision is required and why now?
+    validations:
+      required: true
+  - type: textarea
+    id: options
+    attributes:
+      label: Options considered
+      description: Include the status quo and meaningful competing designs.
+    validations:
+      required: true
+  - type: textarea
+    id: decision
+    attributes:
+      label: Proposed decision
+      description: State ownership, interfaces, lifecycle, and the exact boundary selected.
+    validations:
+      required: true
+  - type: textarea
+    id: tradeoffs
+    attributes:
+      label: Tradeoffs and consequences
+      description: Benefits, costs, irreversible choices, complexity, and future flexibility.
+    validations:
+      required: true
+  - type: textarea
+    id: compatibility
+    attributes:
+      label: Compatibility and migration
+      description: Existing consumers, schema/protocol versions, rollout, backfill, and deprecation.
+  - type: textarea
+    id: security
+    attributes:
+      label: Security, privacy, and authority
+      description: Threats, trust boundaries, credentials, grants, revocation, and negative cases.
+    validations:
+      required: true
+  - type: textarea
+    id: data
+    attributes:
+      label: Data and memory effects
+      description: Ownership, provenance, retention, correction, deletion, migration, and isolation.
+  - type: textarea
+    id: failures
+    attributes:
+      label: Failure modes and observability
+      description: Expected failures, degraded behavior, detection, readback, and evidence.
+    validations:
+      required: true
+  - type: textarea
+    id: rollback
+    attributes:
+      label: Rollback and recovery
+      description: Safe reversal, state disposition, and stop conditions.
+    validations:
+      required: true
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies and decision relationships
+      description: ADRs, repositories, interfaces, and supersedes/superseded-by links.

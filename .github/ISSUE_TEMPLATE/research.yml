@@ -1,0 +1,60 @@
+name: Research task
+description: Define evidence needed for a bounded engineering or architecture decision.
+title: "research: "
+labels:
+  - "type:research"
+body:
+  - type: textarea
+    id: question
+    attributes:
+      label: Research question
+      description: Make the question falsifiable or decision-oriented where practical.
+    validations:
+      required: true
+  - type: textarea
+    id: decision
+    attributes:
+      label: Decision this research supports
+      description: State the owner, deadline or trigger, and choices the evidence will distinguish.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence required
+      description: Source, experiment, metrics, negative cases, environment, and minimum confidence.
+    validations:
+      required: true
+  - type: textarea
+    id: sources
+    attributes:
+      label: Primary-source plan
+      description: Official documentation, standards, original papers, source inspection, or direct experiments to prefer.
+    validations:
+      required: true
+  - type: textarea
+    id: constraints
+    attributes:
+      label: Scope, privacy, cost, and stop conditions
+      description: Authorized data/environments, resource limits, prohibited actions, and conditions that stop the research.
+    validations:
+      required: true
+  - type: textarea
+    id: findings
+    attributes:
+      label: Current findings or conclusion
+      description: Optional when opening; add bounded findings, confidence, contradictions, and retrieval dates as work proceeds.
+  - type: textarea
+    id: consequences
+    attributes:
+      label: Implementation consequences
+      description: Tests, constraints, ADRs, implementation work, or an explicit no-change result supported by the conclusion.
+  - type: checkboxes
+    id: provenance
+    attributes:
+      label: Provenance checks
+      options:
+        - label: I will distinguish primary evidence, secondary analysis, inference, and project decision.
+          required: true
+        - label: I will not copy private or rights-restricted source into this issue.
+          required: true

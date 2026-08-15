@@ -1,0 +1,11 @@
+{
+  "name": "Mind Seed repository hygiene",
+  "description": "Read-only whitespace and tracked-JSON validation for a Mind Seed repository.",
+  "iconName": "check-circle",
+  "categories": [
+    "Automation"
+  ],
+  "filePatterns": [
+    "README.md$"
+  ]
+}

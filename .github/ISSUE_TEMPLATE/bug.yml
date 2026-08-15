@@ -1,0 +1,97 @@
+name: Bug report
+description: Report a reproducible defect with exact identity and safe evidence.
+title: "bug: "
+labels:
+  - "type:bug"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Do not submit secrets, private data, protected knowledge, or exploitable security details. Use the security policy for sensitive reports.
+  - type: dropdown
+    id: component
+    attributes:
+      label: Affected component
+      options:
+        - Core runtime
+        - Cognition
+        - Memory
+        - Agents and orchestration
+        - Integration
+        - System and NixOS
+        - UI or interface
+        - Security or privacy
+        - Research or documentation
+        - Organization infrastructure
+        - Unknown
+    validations:
+      required: true
+  - type: input
+    id: identity
+    attributes:
+      label: Version or commit
+      description: Give the exact version, commit SHA, package identity, or state that it is unknown.
+      placeholder: 0123456789abcdef or 0.0.0
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: OS, architecture, install method, relevant configuration, and external boundary. Redact private identifiers.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction
+      description: Provide the smallest safe, deterministic sequence and synthetic inputs.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Logs and evidence
+      description: Paste only minimal redacted output, checksums, screenshots, or links. Never include credentials or protected content.
+  - type: dropdown
+    id: regression
+    attributes:
+      label: Regression status
+      options:
+        - Unknown
+        - Yes, this worked before
+        - No, this has never worked
+    validations:
+      required: true
+  - type: dropdown
+    id: security
+    attributes:
+      label: Security or privacy implications
+      description: If sensitive details are involved, stop and use the private security route.
+      options:
+        - None known
+        - Possible, no sensitive details included
+        - Confirmed or sensitive - I will report privately instead
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Submission checks
+      options:
+        - label: I searched for an existing issue and selected the repository that owns the defect.
+          required: true
+        - label: I removed secrets, personal data, protected content, and private machine identifiers.
+          required: true
