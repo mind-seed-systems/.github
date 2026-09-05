@@ -10,14 +10,16 @@
     "repositoryNamePattern": "mind-seed-<component>",
     "preservedRepositoryNames": [
       ".github",
-      "Mind-Seed"
+      "Mind-Seed",
+      "OS"
     ]
   },
   "authorities": {
     "dynamicRepositoryState": "GitHub API",
     "repositorySemantics": "mind-seed-organization.json",
     "organizationArchitecture": "docs/organization-architecture.md",
-    "coreArchitecture": "mind-seed-systems/Mind-Seed"
+    "coreArchitecture": "mind-seed-systems/Mind-Seed",
+    "platformArchitecture": "mind-seed-systems/OS"
   },
   "repositories": [
     {
@@ -65,6 +67,30 @@
         {
           "repository": "Mind-Seed",
           "path": "docs/github-organization.md"
+        }
+      ]
+    },
+    {
+      "id": "os-platform",
+      "name": "OS",
+      "url": "https://github.com/mind-seed-systems/OS",
+      "role": "infrastructure",
+      "lifecycle": "active",
+      "visibility": "private",
+      "securityClassification": "private-restricted",
+      "releaseStatus": "private-source-release",
+      "defaultBranch": "main",
+      "owners": [
+        "@jikovec"
+      ],
+      "documentation": [
+        {
+          "repository": "OS",
+          "path": "README.md"
+        },
+        {
+          "repository": "OS",
+          "path": "docs/releases/README.md"
         }
       ]
     }
@@ -119,6 +145,21 @@
       "id": "security",
       "currentOwner": "canonical-core",
       "boundary": "cross-cutting"
+    },
+    {
+      "id": "platform-composition",
+      "currentOwner": "os-platform",
+      "boundary": "current-repository"
+    },
+    {
+      "id": "host-policy",
+      "currentOwner": "os-platform",
+      "boundary": "current-repository"
+    },
+    {
+      "id": "storage-and-recovery",
+      "currentOwner": "os-platform",
+      "boundary": "current-repository"
     }
   ],
   "externalEntities": [
@@ -150,11 +191,32 @@
       "evidence": "docs/organization-architecture.md#current-repository-map"
     },
     {
+      "source": "organization-infrastructure",
+      "type": "provides-interface-for",
+      "target": "os-platform",
+      "status": "active",
+      "evidence": "docs/organization-architecture.md#current-repository-map"
+    },
+    {
+      "source": "os-platform",
+      "type": "depends-on",
+      "target": "nixos-platform",
+      "status": "active",
+      "evidence": "docs/organization-architecture.md#platform-build-dependency"
+    },
+    {
       "source": "canonical-core",
       "type": "depends-on",
       "target": "nixos-platform",
+      "status": "active",
+      "evidence": "docs/organization-architecture.md#application-build-dependency"
+    },
+    {
+      "source": "canonical-core",
+      "type": "integrates-with",
+      "target": "os-platform",
       "status": "planned",
-      "evidence": "docs/organization-architecture.md#canonical-core-repository"
+      "evidence": "docs/organization-architecture.md#planned-peer-integration"
     }
   ]
 }

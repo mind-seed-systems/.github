@@ -2,7 +2,8 @@
   "schemaVersion": "mind-seed.labels/v1",
   "profiles": [
     "core",
-    "infrastructure"
+    "infrastructure",
+    "platform"
   ],
   "githubDefaultsToRemove": [
     "bug",
@@ -20,103 +21,103 @@
       "name": "type:bug",
       "color": "D73A4A",
       "description": "A reproducible defect in intended behavior.",
-      "profiles": ["core", "infrastructure"]
+      "profiles": ["core", "infrastructure", "platform"]
     },
     {
       "name": "type:feature",
       "color": "A2EEEF",
       "description": "A new user or system capability.",
-      "profiles": ["core", "infrastructure"]
+      "profiles": ["core", "infrastructure", "platform"]
     },
     {
       "name": "type:architecture",
       "color": "5319E7",
       "description": "Architecture, ownership, interface, or RFC work.",
-      "profiles": ["core", "infrastructure"]
+      "profiles": ["core", "infrastructure", "platform"]
     },
     {
       "name": "type:research",
       "color": "0E8A16",
       "description": "Evidence gathering for a bounded decision.",
-      "profiles": ["core", "infrastructure"]
+      "profiles": ["core", "infrastructure", "platform"]
     },
     {
       "name": "type:documentation",
       "color": "0075CA",
       "description": "Documentation, indexes, examples, or provenance.",
-      "profiles": ["core", "infrastructure"]
+      "profiles": ["core", "infrastructure", "platform"]
     },
     {
       "name": "type:security",
       "color": "B60205",
       "description": "Non-sensitive security hardening or policy work.",
-      "profiles": ["core", "infrastructure"]
+      "profiles": ["core", "infrastructure", "platform"]
     },
     {
       "name": "type:refactor",
       "color": "C5DEF5",
       "description": "Internal restructuring without intended capability change.",
-      "profiles": ["core", "infrastructure"]
+      "profiles": ["core", "infrastructure", "platform"]
     },
     {
       "name": "type:test",
       "color": "FEF2C0",
       "description": "Test, evaluation, fixture, or verification coverage.",
-      "profiles": ["core", "infrastructure"]
+      "profiles": ["core", "infrastructure", "platform"]
     },
     {
       "name": "type:chore",
       "color": "EDEDED",
       "description": "Maintenance that does not fit another type.",
-      "profiles": ["core", "infrastructure"]
+      "profiles": ["core", "infrastructure", "platform"]
     },
     {
       "name": "priority:P0",
       "color": "B60205",
       "description": "Immediate critical impact; stop other work.",
-      "profiles": ["core", "infrastructure"]
+      "profiles": ["core", "infrastructure", "platform"]
     },
     {
       "name": "priority:P1",
       "color": "D93F0B",
       "description": "High impact and near-term attention required.",
-      "profiles": ["core", "infrastructure"]
+      "profiles": ["core", "infrastructure", "platform"]
     },
     {
       "name": "priority:P2",
       "color": "FBCA04",
       "description": "Normal planned priority.",
-      "profiles": ["core", "infrastructure"]
+      "profiles": ["core", "infrastructure", "platform"]
     },
     {
       "name": "priority:P3",
       "color": "0E8A16",
       "description": "Low urgency or opportunistic improvement.",
-      "profiles": ["core", "infrastructure"]
+      "profiles": ["core", "infrastructure", "platform"]
     },
     {
       "name": "state:blocked",
       "color": "B60205",
       "description": "Cannot progress until an identified dependency or gate changes.",
-      "profiles": ["core", "infrastructure"]
+      "profiles": ["core", "infrastructure", "platform"]
     },
     {
       "name": "state:needs-decision",
       "color": "D876E3",
       "description": "Requires an explicit owner or architecture decision.",
-      "profiles": ["core", "infrastructure"]
+      "profiles": ["core", "infrastructure", "platform"]
     },
     {
       "name": "state:ready",
       "color": "0E8A16",
       "description": "Scoped and ready for implementation.",
-      "profiles": ["core", "infrastructure"]
+      "profiles": ["core", "infrastructure", "platform"]
     },
     {
       "name": "state:in-progress",
       "color": "1D76DB",
       "description": "Actively being worked on.",
-      "profiles": ["core", "infrastructure"]
+      "profiles": ["core", "infrastructure", "platform"]
     },
     {
       "name": "area:core",
@@ -146,19 +147,19 @@
       "name": "area:integration",
       "color": "006B75",
       "description": "External integration, adapter, protocol, or API boundary.",
-      "profiles": ["core"]
+      "profiles": ["core", "platform"]
     },
     {
       "name": "area:security",
       "color": "B60205",
       "description": "Security, authority, privacy, credentials, or audit boundary.",
-      "profiles": ["core", "infrastructure"]
+      "profiles": ["core", "infrastructure", "platform"]
     },
     {
       "name": "area:system",
       "color": "1D76DB",
       "description": "NixOS, host capability, service, broker, or resource control.",
-      "profiles": ["core"]
+      "profiles": ["core", "platform"]
     },
     {
       "name": "area:ui",
@@ -170,43 +171,43 @@
       "name": "area:infrastructure",
       "color": "0052CC",
       "description": "GitHub, CI, release, deployment, or organization infrastructure.",
-      "profiles": ["core", "infrastructure"]
+      "profiles": ["core", "infrastructure", "platform"]
     },
     {
       "name": "area:research",
       "color": "0E8A16",
       "description": "Research method, evaluation, benchmark, or evidence.",
-      "profiles": ["core", "infrastructure"]
+      "profiles": ["core", "infrastructure", "platform"]
     },
     {
       "name": "area:documentation",
       "color": "0075CA",
       "description": "Documentation, indexes, standards, or knowledge navigation.",
-      "profiles": ["core", "infrastructure"]
+      "profiles": ["core", "infrastructure", "platform"]
     },
     {
       "name": "breaking-change",
       "color": "B60205",
       "description": "Requires compatibility, migration, and release treatment.",
-      "profiles": ["core", "infrastructure"]
+      "profiles": ["core", "infrastructure", "platform"]
     },
     {
       "name": "dependencies",
       "color": "0366D6",
       "description": "Dependency, lockfile, provenance, or supply-chain change.",
-      "profiles": ["core", "infrastructure"]
+      "profiles": ["core", "infrastructure", "platform"]
     },
     {
       "name": "performance",
       "color": "D4C5F9",
       "description": "Performance, resource budget, latency, or capacity characteristic.",
-      "profiles": ["core"]
+      "profiles": ["core", "platform"]
     },
     {
       "name": "privacy",
       "color": "C2185B",
       "description": "Personal data, protected knowledge, retention, or isolation impact.",
-      "profiles": ["core", "infrastructure"]
+      "profiles": ["core", "infrastructure", "platform"]
     }
   ]
 }

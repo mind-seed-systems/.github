@@ -5,7 +5,7 @@ param(
     [string] $Repository,
 
     [Parameter(Mandatory)]
-    [ValidateSet('core', 'infrastructure')]
+    [ValidateSet('core', 'infrastructure', 'platform')]
     [string] $Profile,
 
     [switch] $PruneGitHubDefaults

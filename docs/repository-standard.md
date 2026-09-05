@@ -6,7 +6,8 @@ runtime requires a different contract.
 
 ## Identity and naming
 
-- Preserve the canonical core name `Mind-Seed` and special repository `.github`.
+- Preserve the existing canonical names `Mind-Seed`, `OS`, and `.github`.
+  Future naming conventions do not require renaming these repositories.
 - Name future components `mind-seed-<component>` unless a standalone product
   identity has a documented reason to differ.
 - Give every repository a concise description, semantic role in the
@@ -14,6 +15,12 @@ runtime requires a different contract.
   classification, and release status.
 - Default to private. Public visibility requires a reviewed non-sensitive
   purpose and distribution/rights decision.
+
+`Mind-Seed` owns product/core behavior and application-side NixOS package/service
+contracts. `OS` owns the existing platform/build base, composition, host policy,
+storage, recovery, and host-side prerequisites. `.github` owns organization
+governance. Work stays with its substantive owner; NixOS usage alone does not
+assign product code to OS.
 
 ## Required foundation
 
@@ -29,6 +36,18 @@ Every substantive repository has:
 - a changelog and Semantic Versioning policy when it releases software;
 - CI that actually fits its language and artifact;
 - an entry in `mind-seed-organization.json`.
+
+## Issue forms and label provisioning
+
+Default issue forms may be inherited from public `.github` when a repository has
+no local overrides. Referenced labels must already exist in the receiving
+repository; inheriting a template does not provision labels. See GitHub's
+[issue-form syntax](https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/syntax-for-issue-forms).
+`config/labels.json` defines `core`, organization `infrastructure`, and OS
+`platform` profiles. The platform profile reuses existing common labels plus
+`area:system` and `area:integration`; it creates no new taxonomy. Synchronization
+is a separate explicitly authorized action through `scripts/sync-labels.ps1`.
+Defining a profile is not evidence that remote labels have been applied.
 
 ## Branches and history
 
@@ -63,8 +82,11 @@ proportionate verification and an honest evidence report.
 - Use Semantic Versioning for independently released software.
 - Preserve existing version history; do not invent a new current version during
   infrastructure work.
-- Meaningful releases update a changelog and create GitHub Release notes for the
-  exact version when a real release boundary is reached.
+- Document private source releases in the owning repository. They do not imply
+  a GitHub Release, public supported release, deployment, or stable support.
+  OS currently uses this posture; Mind-Seed remains internal/unreleased.
+- Create GitHub Release notes only when that publication is explicitly intended
+  and authorized; a documented source release does not require inventing tags.
 - Release notes state scope, implemented capabilities, verification level,
   limitations, migrations, and remaining operational gates.
 - A tag, package build, or passing workflow is evidence only of that action; it

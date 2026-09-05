@@ -10,12 +10,16 @@ Do **not** disclose suspected vulnerabilities, credentials, private repository
 content, personal data, protected-vault content, or working exploit material in
 an issue, discussion, pull request, commit, or public log.
 
+- Follow the affected repository's local `SECURITY.md` where present.
 - For this public `.github` repository, use GitHub's
   [private vulnerability report](https://github.com/mind-seed-systems/.github/security/advisories/new)
   when the **Report a vulnerability** control is available.
-- For a private organization repository, authorized collaborators should use a
-  draft GitHub Security Advisory or an existing verified private channel with
-  the organization owner.
+- For a private organization repository, use a verified private maintainer/owner
+  communication channel defined by that repository or organization. Do not
+  assume draft Security Advisories or private vulnerability reporting are
+  available for private repositories. GitHub documents these reporting surfaces
+  for [public repositories](https://docs.github.com/en/code-security/concepts/vulnerability-reporting-and-management/repository-security-advisories);
+  use them only where supported and actually enabled.
 - If neither private route is available, report only that a private contact is
   needed; do not include vulnerability details in the public request.
 

@@ -4,7 +4,9 @@ This repository is the shared GitHub control surface for
 [Mind Seed Systems](https://github.com/mind-seed-systems). It contains public,
 non-sensitive organization metadata, contribution standards, issue forms,
 pull-request guidance, workflow templates, and the canonical semantic map of
-the organization's repositories.
+the organization's repositories: `.github` for organization governance,
+`Mind-Seed` for product/core architecture, and `OS` for the operating-system
+platform and build base.
 
 Mind Seed is a local-first, OS-integrated personal AI research system. Its
 long-term direction includes persistent cognition, governed memory, tools,
@@ -46,13 +48,27 @@ project material.
 
 ## Validation
 
-The repository's workflow and local validator are read-only:
+The repository's workflow and local validator are read-only. Use Python 3.13
+and install the pinned validation dependencies in an isolated environment:
 
 ```text
+python -m pip install -r scripts/requirements-validation.txt
 python -B scripts/validate_organization.py
+python -B -m unittest discover -s tests -v
 git diff --check
 ```
 
-YAML syntax is additionally parsed in GitHub Actions. Passing these checks
-proves repository structure and metadata consistency only; it is not evidence
+The validator enforces Draft 2020-12 JSON Schema, semantic identities, safe
+reference paths, local Markdown heading fragments, labels, ADR structure, and
+immutable Action pins. YAML syntax is additionally parsed in GitHub Actions.
+Offline validation does not access private repositories or prove live inventory.
+An authorized maintainer can explicitly request authenticated, read-only GitHub
+reconciliation of names, visibility, and default branches:
+
+```text
+python -B scripts/validate_organization.py --live-inventory
+```
+
+Missing access fails clearly. Passing these checks proves repository structure
+and metadata consistency only; it is not evidence
 that the Mind Seed runtime is built, deployed, or release-qualified.

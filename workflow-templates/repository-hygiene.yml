@@ -2,6 +2,7 @@ name: Repository hygiene
 
 on:
   pull_request:
+  push:
   workflow_dispatch:
 
 permissions:
@@ -20,9 +21,36 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
+          fetch-depth: 0
 
       - name: Check patch whitespace
-        run: git diff --check
+        shell: bash
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+          BEFORE_SHA: ${{ github.event.before }}
+        run: |
+          set -euo pipefail
+          require_commit() {
+            [[ "$1" =~ ^[0-9a-f]{40}$ ]] || { echo "Invalid commit SHA" >&2; exit 1; }
+            if ! git cat-file -e "$1^{commit}" 2>/dev/null; then
+              git fetch --no-tags origin "$1"
+            fi
+            git cat-file -e "$1^{commit}"
+          }
+          require_commit "$HEAD_SHA"
+          if [[ "$EVENT_NAME" == pull_request ]]; then
+            require_commit "$BASE_SHA"
+            base=$(git merge-base "$BASE_SHA" "$HEAD_SHA")
+          elif [[ "$EVENT_NAME" == push && -n "$BEFORE_SHA" && ! "$BEFORE_SHA" =~ ^0+$ ]]; then
+            require_commit "$BEFORE_SHA"
+            base=$BEFORE_SHA
+          else
+            # New branches and manual runs have no event base: check the whole tree.
+            base=$(git hash-object -t tree /dev/null)
+          fi
+          git diff --check "$base" "$HEAD_SHA"
 
       - name: Parse tracked JSON
         shell: python

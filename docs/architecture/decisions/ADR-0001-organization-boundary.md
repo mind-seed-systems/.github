@@ -75,6 +75,11 @@ This is the first organization-level ADR and supersedes no prior record. A
 future change to the organization boundary or canonical-core role must create a
 new ADR and link both directions.
 
+Subsequent refinement (2026-09-05): [ADR-0002](ADR-0002-os-platform-peer.md)
+updates the two-repository snapshot and infrastructure ownership assumption.
+The organization boundary, single canonical core, and extraction criteria remain
+accepted; this record is not wholly superseded.
+
 ## Evidence and verification
 
 The accepted baseline is represented by the live GitHub repository inventory,

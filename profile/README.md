@@ -14,6 +14,9 @@ proof.
 
 - **`Mind-Seed`** — the private canonical core repository and historical Ardor
   lineage.
+- **`OS`** — the private operating-system/platform and build-base repository;
+  its documented private source release does not imply public support or
+  deployed Mind Seed integration.
 - **`.github`** — this public, non-sensitive organization standards and metadata
   repository.
 
@@ -23,9 +26,9 @@ knowledge-domain boundary. Names of possible subsystems are not placeholders.
 
 ## Start here
 
-- [Organization and repository architecture](../docs/organization-architecture.md)
-- [Contribution standard](../CONTRIBUTING.md)
-- [Security reporting](../SECURITY.md)
-- [Machine-readable organization map](../mind-seed-organization.json)
+- [Organization and repository architecture](https://github.com/mind-seed-systems/.github/blob/main/docs/organization-architecture.md)
+- [Contribution standard](https://github.com/mind-seed-systems/.github/blob/main/CONTRIBUTING.md)
+- [Security reporting](https://github.com/mind-seed-systems/.github/blob/main/SECURITY.md)
+- [Machine-readable organization map](https://github.com/mind-seed-systems/.github/blob/main/mind-seed-organization.json)
 
 Identity colors: `#77CC00`, `#11CC00`, `#00CC55`.

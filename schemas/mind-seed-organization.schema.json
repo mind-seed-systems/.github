@@ -238,7 +238,8 @@
             "current-core",
             "future-extraction-candidate",
             "cross-cutting",
-            "conceptual"
+            "conceptual",
+            "current-repository"
           ]
         }
       }

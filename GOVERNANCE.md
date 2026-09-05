@@ -10,9 +10,12 @@ maintainers, not a simulated enterprise hierarchy.
 - The organization owner is the administrative recovery authority.
 - Every repository names an accountable maintainer in the organization
   manifest and, where supported, `CODEOWNERS`.
-- The canonical core repository owns cross-cutting Mind Seed product and system
-  architecture until an extraction decision assigns a coherent artifact to a
-  different repository.
+- `Mind-Seed` owns canonical product/core architecture and application-side
+  integration contracts until an extraction decision assigns a coherent artifact.
+- `OS` is the existing peer authority for NixOS composition, platform/build base,
+  physical-host policy, storage, recovery, and host-side integration surfaces.
+- `.github` owns organization architecture, governance, and security policy;
+  each product/platform repository owns security within its own boundary.
 - Material architecture decisions are recorded as repository-native ADRs.
 - Security-sensitive incidents and credentials are handled outside public
   issues and source control.

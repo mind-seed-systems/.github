@@ -2,7 +2,7 @@
 
 **Status:** accepted organization baseline
 
-**Last reviewed:** 2026-08-15
+**Last reviewed:** 2026-09-05
 
 ## Organization purpose
 
@@ -30,12 +30,12 @@ deployment are separate evidence classes.
 
 ## Repository tiers
 
-### A. Existing canonical repository
+### A. Canonical core repository
 
 #### `mind-seed-systems/Mind-Seed`
 
 `Mind-Seed` is the private canonical core and the historical Ardor lineage. It
-owns cross-cutting system behavior while that behavior changes together:
+owns Mind Seed product/runtime behavior while that behavior changes together:
 
 - executive runtime, cognition, goals, commitments, and bounded background
   operation;
@@ -78,7 +78,22 @@ for organization-wide defaults and the organization profile. Private source,
 local operational evidence, adjacent-project details, credentials, and
 unpublished internal plans do not belong here.
 
-### C. Future component repositories
+### C. Existing OS platform repository
+
+`mind-seed-systems/OS` is the private, active organization-owned platform/build-base
+peer, not a future extraction candidate or source contained inside Mind-Seed.
+It owns NixOS composition and platform configuration, physical-host policy,
+host-side prerequisites and placement, storage and recovery architecture/tooling,
+and OS-level deployment/integration surfaces. `OS` is a preserved canonical name,
+alongside `.github` and `Mind-Seed`.
+
+Mind-Seed retains application-side NixOS package/service and host integration
+contracts. OS owns the platform that consumes or supports those contracts.
+NixOS involvement alone does not transfer ownership to OS. Product/runtime
+security belongs to Mind-Seed; platform security belongs to OS; organization
+governance/security policy belongs to `.github`.
+
+### D. Future component repositories
 
 The following are architectural domains, not repository reservations:
 
@@ -92,7 +107,7 @@ The following are architectural domains, not repository reservations:
 | Protocols / SDK / API | `Mind-Seed` | multiple repositories consume a stable versioned protocol or SDK |
 | System integration | `Mind-Seed` | packaging or host integration becomes independently consumable without separating Mind Seed from its NixOS target |
 | UI / interfaces | `Mind-Seed` | a desktop, web, mobile, or embodied interface has a separately distributable artifact and compatibility contract |
-| Infrastructure | `.github` for GitHub metadata; core otherwise | deployment or build infrastructure owns independent environments and lifecycle |
+| Infrastructure | `.github` for governance; `OS` for platform/build base; `Mind-Seed` for application-side contracts | additional substantive infrastructure has an independent lifecycle beyond these existing boundaries |
 | Research / evaluation | `Mind-Seed` | a substantial reusable, rights-cleared benchmark or knowledge corpus has independent governance |
 | Website / distribution | none | an approved public beta creates a real website, download, or deployment boundary |
 | Security | cross-cutting | a substantive independently maintained security tool or policy artifact exists; security responsibility itself remains cross-cutting |
@@ -108,12 +123,30 @@ that identity when the exception and relationships are documented.
 | --- | --- | --- | --- | --- | --- | --- |
 | `.github` | Public | Organization metadata and standards | Active | Not applicable | `main` | `@jikovec` |
 | `Mind-Seed` | Private | Canonical core and Ardor lineage | Experimental | Internal / unreleased | `main` | `@jikovec` |
+| `OS` | Private | Operating-system platform and build base | Active | Private source release | `main` | `@jikovec` |
 
 GitHub's API is authoritative for current existence, visibility, default branch,
 and repository state. The
 [organization manifest](../mind-seed-organization.json) is authoritative for
 semantic roles and relationships. A stale manifest must be corrected; it must
 not override live GitHub state.
+
+## Component-domain ownership
+
+The manifest's `current-repository` boundary means a domain is currently and
+substantively owned by the repository named in `currentOwner`, which need not
+be the canonical core. It is an additive vocabulary change in
+`mind-seed.organization/v1`, not an OS-specific enum or extraction claim.
+
+OS owns `platform-composition`, `host-policy`, and `storage-and-recovery` with
+this boundary. Existing Mind-Seed domains remain with `canonical-core`:
+`core-runtime`, `cognition`, `memory`, `agent-orchestration`, `system-integration`,
+`interfaces`, `protocols-and-sdk`, `research-and-evaluation`,
+`website-and-distribution`, and `security`, retaining their existing boundary
+classifications. `system-integration` means Mind Seed application-side integration
+contracts, not the complete OS platform. The cross-cutting `security` domain
+models product/runtime security and does not assign exclusive organization-wide
+security ownership to Mind-Seed.
 
 ## Repository creation policy
 
@@ -223,10 +256,39 @@ grants repository, filesystem, credential, data, network, or deployment
 authority. This graph complements future filesystem and project-memory graphs;
 it does not replace their finer-grained provenance or access controls.
 
-Adjacent projects, personal machine configuration, external products, and
+Adjacent projects outside the owned repositories, external products, and
 other companies remain external unless a separate transfer or ownership
 decision changes that fact. Conceptual integration does not move their code or
 data into this organization.
+
+### Current relationship edges
+
+| Source | Relationship | Target | Status | Scope |
+| --- | --- | --- | --- | --- |
+| `.github` | `provides-interface-for` | `Mind-Seed` | active | Organization governance interface |
+| `.github` | `provides-interface-for` | `OS` | active | Organization governance interface |
+| `OS` | `depends-on` | `NixOS` | active | Platform/source/build dependency |
+| `Mind-Seed` | `depends-on` | `NixOS` | active | Application/package/module build dependency |
+| `Mind-Seed` | `integrates-with` | `OS` | planned | Peer application/platform integration |
+
+### Platform build dependency
+
+OS has an actual NixOS platform/source/build dependency. NixOS remains an
+external platform entity, distinct from the organization-owned OS repository.
+This edge describes the build base, not a new deployment assertion.
+
+### Application build dependency
+
+Mind-Seed's existing package and NixOS module build depend on NixOS/nixpkgs.
+The active edge is limited to those application build contracts and does not
+establish deployed service behavior or physical-host acceptance.
+
+### Planned peer integration
+
+Mind-Seed and OS have a planned application/platform integration boundary.
+This is not evidence of deployed integration, runtime activation, authorization,
+or completed product deployment. No `deployed-by`, unconditional Mind-Seed-to-OS
+`depends-on`, containment, or supersession edge is asserted.
 
 ## Machine-readable organization knowledge
 
@@ -236,9 +298,18 @@ component ownership, lifecycle classification, release posture, documentation
 authorities, and typed relationships. Live inventory, branches, permissions,
 issues, checks, and releases remain dynamic GitHub data.
 
-The manifest is intentionally small, schema-backed, and validated by
-`scripts/validate_organization.py`. Extensions require a schema version or an
-explicit optional field rather than ad-hoc undocumented keys.
+Authority is divided explicitly: GitHub API for dynamic repository state,
+`mind-seed-organization.json` for repository semantics, `.github` for organization
+architecture, `mind-seed-systems/Mind-Seed` for core architecture, and
+`mind-seed-systems/OS` for OS/platform architecture.
+
+The manifest is intentionally small and validated against JSON Schema plus
+repository-local semantic, identity, safe-path, and Markdown-fragment checks by
+`scripts/validate_organization.py`. Compatible additive vocabulary changes may
+retain v1; incompatible changes require a version decision. Offline checks need
+no private access. The explicit `--live-inventory` mode reads GitHub inventory
+and compares names, visibility, and default branches; it cannot establish
+runtime acceptance or arbitrary private documentation contents.
 
 ## Security baseline
 
@@ -247,17 +318,23 @@ explicit optional field rather than ad-hoc undocumented keys.
 - `GITHUB_TOKEN` defaults to read-only; write permissions are granted only per
   job and purpose.
 - Third-party Actions are pinned to immutable commit SHAs.
-- Dependency graph and Dependabot alerts/security updates are enabled where
+- Policy: enable dependency graph and Dependabot alerts/security updates where
   the plan supports them and a repository has relevant manifests.
-- Secret scanning, push protection, code security, private vulnerability
-  reporting, branch protection, and rulesets are enabled only where supported
+- Policy: enable secret scanning, push protection, code security, public-repository
+  private vulnerability reporting, branch protection, and rulesets only where supported
   without a paid change and without changing private source visibility.
 - No required status check is configured until the exact check has run reliably
   on the repository.
 - No secret, member, billing, visibility, external-app, or credential change is
   inferred from this baseline.
 
-The current GitHub Free organization cannot enforce branch protection or
+These are intended policies, not a claim that features are uniformly enabled.
+Live repository settings require separate read-only verification and any changes
+require separate authorization. The API confirmed the Free organization plan on
+2026-09-05. GitHub documents the applicable
+[branch-protection](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches)
+and [ruleset](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/creating-rulesets-for-a-repository)
+plan limits. The current GitHub Free organization cannot enforce branch protection or
 rulesets on private repositories. This is a plan limitation, not a reason to
 make the core public. The policy remains documented and should be enabled if a
 future approved plan or visibility decision makes it available.
@@ -288,17 +365,22 @@ these lifecycle stages without claiming it has reached them:
 
 A release identifies the exact version and scope, implemented capabilities,
 verification level, known limitations, compatibility and migration effects,
-and unresolved operational gates. Meaningful releases update the repository
-changelog and GitHub Releases. A local implementation, tag, workflow definition,
+and unresolved operational gates. Documented private source releases update
+the owning repository's release records; GitHub Releases are a separate
+explicitly authorized publication surface. A local implementation, tag, workflow definition,
 or green test run does not alone prove deployment or release acceptance.
 
 Existing Mind Seed release/version history is preserved. No version is created
-by this organization bootstrap.
+by this organization reconciliation. OS has a documented private source release,
+which is distinct from a GitHub Release, a public supported release, product
+deployment, or stable public support. Its exact version stays in OS release
+records, not in this organization manifest. Mind-Seed remains internal/unreleased.
 
 ## GitHub Project structure
 
-When organization Projects access is available to the authenticated owner, the
-canonical project is **Mind Seed Development** with these fields:
+**Proposed / unverified:** the intended project is **Mind Seed Development**.
+Its existence, fields, and views have not been verified during this reconciliation.
+When separately authorized, consider these fields:
 
 - Status
 - Priority
@@ -308,7 +390,7 @@ canonical project is **Mind Seed Development** with these fields:
 - Risk
 - Type
 
-Its views are Current work, Roadmap, Backlog, Architecture, Research, and
+Proposed views are Current work, Roadmap, Backlog, Architecture, Research, and
 Security / technical debt. Only actual issues and pull requests are added;
 placeholder roadmap items are not invented. Project configuration is dynamic
 GitHub state and is not duplicated into the organization manifest.
@@ -326,9 +408,11 @@ authorization.
 - The private core remains experimental and has no accepted public release.
 - Organization-wide defaults are public and therefore intentionally omit
   private architecture evidence and adjacent-project details.
-- Private-repository branch protection/rulesets and advanced secret/code
-  scanning are unavailable on the current GitHub Free organization plan.
+- Private-repository branch protection/rulesets are unavailable on the current
+  GitHub Free organization plan; other security features depend on repository,
+  product entitlement, and verified configuration.
 - A public vulnerability contact beyond supported GitHub private-reporting
   surfaces has not been designated.
 - A second-maintainer team model is documented but not yet needed.
-- Future extraction candidates remain in the core until their criteria are met.
+- Future extraction candidates remain with their current owner until their
+  criteria are met. OS is already an existing repository, not a candidate.
