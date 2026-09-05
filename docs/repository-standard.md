@@ -6,7 +6,7 @@ runtime requires a different contract.
 
 ## Identity and naming
 
-- Preserve the existing canonical names `Mind-Seed`, `OS`, and `.github`.
+- Preserve the existing canonical names `Mind-Seed`, `OS`, `.github`, and `Orin`.
   Future naming conventions do not require renaming these repositories.
 - Name future components `mind-seed-<component>` unless a standalone product
   identity has a documented reason to differ.

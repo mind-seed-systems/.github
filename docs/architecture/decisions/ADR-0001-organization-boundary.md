@@ -80,6 +80,11 @@ updates the two-repository snapshot and infrastructure ownership assumption.
 The organization boundary, single canonical core, and extraction criteria remain
 accepted; this record is not wholly superseded.
 
+Subsequent refinement (2026-09-05): [ADR-0003](ADR-0003-minimal-repository-growth.md)
+recognizes the independent Orin identity and defines the next shared-service
+repository boundary. Earlier source-lineage descriptions are historical;
+source migration acceptance remains with the owning repositories.
+
 ## Evidence and verification
 
 The accepted baseline is represented by the live GitHub repository inventory,

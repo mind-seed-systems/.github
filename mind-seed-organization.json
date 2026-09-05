@@ -11,7 +11,8 @@
     "preservedRepositoryNames": [
       ".github",
       "Mind-Seed",
-      "OS"
+      "OS",
+      "Orin"
     ]
   },
   "authorities": {
@@ -91,6 +92,26 @@
         {
           "repository": "OS",
           "path": "docs/releases/README.md"
+        }
+      ]
+    },
+    {
+      "id": "orin-research",
+      "name": "Orin",
+      "url": "https://github.com/mind-seed-systems/Orin",
+      "role": "research",
+      "lifecycle": "conceptual",
+      "visibility": "private",
+      "securityClassification": "private-restricted",
+      "releaseStatus": "internal-unreleased",
+      "defaultBranch": "main",
+      "owners": [
+        "@jikovec"
+      ],
+      "documentation": [
+        {
+          "repository": ".github",
+          "path": "docs/organization-architecture.md#d-independent-orin-repository"
         }
       ]
     }
@@ -217,6 +238,13 @@
       "target": "os-platform",
       "status": "planned",
       "evidence": "docs/organization-architecture.md#planned-peer-integration"
+    },
+    {
+      "source": "organization-infrastructure",
+      "type": "provides-interface-for",
+      "target": "orin-research",
+      "status": "active",
+      "evidence": "docs/organization-architecture.md#d-independent-orin-repository"
     }
   ]
 }
