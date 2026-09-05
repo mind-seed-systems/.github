@@ -114,6 +114,26 @@
           "path": "docs/organization-architecture.md#d-independent-orin-repository"
         }
       ]
+    },
+    {
+      "id": "shared-services",
+      "name": "mind-seed-infrastructure",
+      "url": "https://github.com/mind-seed-systems/mind-seed-infrastructure",
+      "role": "infrastructure",
+      "lifecycle": "experimental",
+      "visibility": "private",
+      "securityClassification": "private-restricted",
+      "releaseStatus": "internal-unreleased",
+      "defaultBranch": "main",
+      "owners": [
+        "@jikovec"
+      ],
+      "documentation": [
+        {
+          "repository": "mind-seed-infrastructure",
+          "path": "README.md"
+        }
+      ]
     }
   ],
   "componentDomains": [
@@ -181,6 +201,11 @@
       "id": "storage-and-recovery",
       "currentOwner": "os-platform",
       "boundary": "current-repository"
+    },
+    {
+      "id": "external-service-operations",
+      "currentOwner": "shared-services",
+      "boundary": "current-repository"
     }
   ],
   "externalEntities": [
@@ -245,6 +270,13 @@
       "target": "orin-research",
       "status": "active",
       "evidence": "docs/organization-architecture.md#d-independent-orin-repository"
+    },
+    {
+      "source": "organization-infrastructure",
+      "type": "provides-interface-for",
+      "target": "shared-services",
+      "status": "active",
+      "evidence": "docs/organization-architecture.md#shared-service-governance"
     }
   ]
 }

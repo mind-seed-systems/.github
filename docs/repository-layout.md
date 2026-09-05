@@ -8,7 +8,7 @@ Status: owner-authorized direction; existence and initialization tracked separat
 | `Mind-Seed` | Core product, application contracts, integrations and initial website source | Existing |
 | `OS` | Platform composition, host policy, storage and system recovery | Existing |
 | `Orin` | Independent research project, its source and identity semantics | Existing; separate initialization work |
-| `mind-seed-infrastructure` | Shared external-service operations, domain/DNS configuration, service deployment and service recovery | Authorized next creation; not yet in live inventory |
+| `mind-seed-infrastructure` | Shared external-service operations, domain/DNS configuration, service deployment and service recovery | Created and source verified; experimental, internal/unreleased |
 
 ## Why one new repository
 
@@ -25,14 +25,22 @@ Public delivery of a website does not require public source visibility.
 
 ## Creation and registration
 
-Create only `mind-seed-infrastructure`, private with default branch `main`,
+Completed on 2026-09-05: the private repository was initialized at
+`6c0b15235a370387606f3dac19ad6528d633205b`. Identity, visibility, default
+branch and every packaged source file were read back. See
+[shared-service governance](organization-architecture.md#shared-service-governance).
+The manifest now registers the repository, component ownership and governance
+relationship. No service deployment or product runtime dependency is asserted.
+
+The accepted creation scope was only `mind-seed-infrastructure`, private with default branch `main`,
 owner `@jikovec`, infrastructure role, internal/unreleased posture. Initial
 material must include the bounded service registry and validation, operational
 state provenance, recovery and secret boundaries, and an ADR. Substantive
 documentation/configuration does not imply deployable manifests or live service
 acceptance.
 
-After creating and initializing it:
+The creation and registration verification procedure is:
+
 1. Verify its identity, private visibility, default branch and initial commit.
 2. Add `shared-services` to the organization repository manifest with that
    repository name and `experimental` lifecycle.

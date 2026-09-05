@@ -18,6 +18,8 @@ maintainers, not a simulated enterprise hierarchy.
   each product/platform repository owns security within its own boundary.
 - `Orin` is a separate research project with its own source and acceptance
   lifecycle. Shared organization membership grants no cross-project data access.
+- `mind-seed-infrastructure` owns shared external-service operations and
+  service recovery; repository initialization does not establish live services.
 - Material architecture decisions are recorded as repository-native ADRs.
 - Security-sensitive incidents and credentials are handled outside public
   issues and source control.

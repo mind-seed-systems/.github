@@ -109,7 +109,15 @@ replace its cognition, memory, or orchestration components. No containment,
 runtime dependency, shared credentials, or unrestricted data access is implied.
 See [ADR-0003](architecture/decisions/ADR-0003-minimal-repository-growth.md).
 
-### E. Future component repositories
+### E. Shared external-service infrastructure
+
+`mind-seed-systems/mind-seed-infrastructure` is a private, experimental source
+foundation for shared service operations and recovery. It owns
+`external-service-operations`; website source remains with Mind-Seed and
+platform policy remains with OS. Its service inventory is planning/evidence
+source, not a deployment. See [shared-service governance](#shared-service-governance).
+
+### F. Future component repositories
 
 The following are architectural domains, not repository reservations:
 
@@ -123,7 +131,7 @@ The following are architectural domains, not repository reservations:
 | Protocols / SDK / API | `Mind-Seed` | multiple repositories consume a stable versioned protocol or SDK |
 | System integration | `Mind-Seed` | packaging or host integration becomes independently consumable without separating Mind Seed from its NixOS target |
 | UI / interfaces | `Mind-Seed` | a desktop, web, mobile, or embodied interface has a separately distributable artifact and compatibility contract |
-| Infrastructure | `.github` for governance; `OS` for platform/build base; `Mind-Seed` for application-side contracts | additional substantive infrastructure has an independent lifecycle beyond these existing boundaries |
+| Infrastructure | `.github` for governance; `OS` for platform/build base; `Mind-Seed` for application-side contracts; `mind-seed-infrastructure` for shared service operations | additional substantive infrastructure has an independent lifecycle beyond these existing boundaries |
 | Research / evaluation | `Mind-Seed` | a substantial reusable, rights-cleared benchmark or knowledge corpus has independent governance |
 | Website / distribution | `Mind-Seed` | an approved public beta creates a real website, download, or deployment boundary |
 | Security | cross-cutting | a substantive independently maintained security tool or policy artifact exists; security responsibility itself remains cross-cutting |
@@ -141,6 +149,7 @@ that identity when the exception and relationships are documented.
 | `Mind-Seed` | Private | Canonical core and Ardor lineage | Experimental | Internal / unreleased | `main` | `@jikovec` |
 | `OS` | Private | Operating-system platform and build base | Active | Private source release | `main` | `@jikovec` |
 | `Orin` | Private | Independent research project | Conceptual; source initialization unverified | Internal / unreleased | `main` | `@jikovec` |
+| `mind-seed-infrastructure` | Private | Shared external-service operations and recovery | Experimental; source initialized | Internal / unreleased | `main` | `@jikovec` |
 
 GitHub's API is authoritative for current existence, visibility, default branch,
 and repository state. The
@@ -155,6 +164,7 @@ substantively owned by the repository named in `currentOwner`, which need not
 be the canonical core. It is an additive vocabulary change in
 `mind-seed.organization/v1`, not an OS-specific enum or extraction claim.
 
+Shared-services owns `external-service-operations` with this boundary.
 OS owns `platform-composition`, `host-policy`, and `storage-and-recovery` with
 this boundary. Existing Mind-Seed domains remain with `canonical-core`:
 `core-runtime`, `cognition`, `memory`, `agent-orchestration`, `system-integration`,
@@ -165,16 +175,32 @@ contracts, not the complete OS platform. The cross-cutting `security` domain
 models product/runtime security and does not assign exclusive organization-wide
 security ownership to Mind-Seed.
 
-## Next infrastructure boundary
+## Shared-service governance
 
-The owner has authorized minimal repository growth. The next justified private
-repository is `mind-seed-infrastructure`, for shared external-service operations
-with a lifecycle separate from the core, Orin, and the OS platform. It is a
-creation target, not a currently existing repository or deployed capability.
-Until creation and readback, it is intentionally absent from the live repository
-manifest. [Repository layout](repository-layout.md) defines ownership and
+On 2026-09-05, authenticated GitHub readback verified
+`mind-seed-systems/mind-seed-infrastructure`, private visibility, default branch
+`main`, and initial commit
+[`6c0b15235a370387606f3dac19ad6528d633205b`](https://github.com/mind-seed-systems/mind-seed-infrastructure/commit/6c0b15235a370387606f3dac19ad6528d633205b).
+All 14 source files, including its README, matched the prepared foundation
+byte for byte after cloning the published source. Inventory validation and
+five regression tests passed locally. These checks establish initialized
+source only; no deployment, DNS change, mail delivery or runtime acceptance
+is asserted. Private operational contents remain in the private repository.
+
+The manifest registers `shared-services` with an experimental,
+internal/unreleased lifecycle and `external-service-operations` as a
+`current-repository` component. `.github` provides the active organization
+governance interface to it, as evidenced by this ownership record and the
+shared contribution and security policies. No product runtime dependency is
+inferred. [Repository layout](repository-layout.md) defines ownership and
 activation requirements; [ADR-0003](architecture/decisions/ADR-0003-minimal-repository-growth.md)
-records the decision. Website source remains with Mind-Seed for now.
+records the decision. Website source remains with Mind-Seed; OS retains
+platform and physical-host policy. The authorized creation target is fulfilled.
+
+Read-only GitHub inventory reconciliation verifies five repositories:
+`.github`, `Mind-Seed`, `OS`, `Orin`, and `mind-seed-infrastructure`.
+Orin initialization remains independently owned and is not modified or
+reclassified by this registration.
 
 ## Repository creation policy
 
@@ -298,6 +324,8 @@ data into this organization.
 | `OS` | `depends-on` | `NixOS` | active | Platform/source/build dependency |
 | `Mind-Seed` | `depends-on` | `NixOS` | active | Application/package/module build dependency |
 | `Mind-Seed` | `integrates-with` | `OS` | planned | Peer application/platform integration |
+| `.github` | `provides-interface-for` | `Orin` | active | Organization governance interface |
+| `.github` | `provides-interface-for` | `mind-seed-infrastructure` | active | Shared-service governance interface |
 
 ### Platform build dependency
 
