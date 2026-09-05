@@ -6,7 +6,9 @@ non-sensitive organization metadata, contribution standards, issue forms,
 pull-request guidance, workflow templates, and the canonical semantic map of
 the organization's repositories: `.github` for organization governance,
 `Mind-Seed` for product/core architecture, and `OS` for the operating-system
-platform and build base.
+platform and build base, with `Orin` as a separate research project.
+The [minimal repository structure](docs/repository-layout.md) records the next
+infrastructure boundary and the conditions for further extraction.
 
 Mind Seed is a local-first, OS-integrated personal AI research system. Its
 long-term direction includes persistent cognition, governed memory, tools,

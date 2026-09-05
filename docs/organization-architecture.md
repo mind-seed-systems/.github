@@ -93,7 +93,23 @@ NixOS involvement alone does not transfer ownership to OS. Product/runtime
 security belongs to Mind-Seed; platform security belongs to OS; organization
 governance/security policy belongs to `.github`.
 
-### D. Future component repositories
+### D. Independent Orin repository
+
+`mind-seed-systems/Orin` is a private, standalone research repository, with
+`Orin` preserved as its product identity. Its existence is confirmed, while
+source initialization and operational capability are not established by the
+organization inventory. The manifest uses `conceptual` as its current
+capability lifecycle, not as a statement that the repository is absent.
+Documentation evidence therefore points here until repository-local published
+documentation can be verified. Separate ongoing source/history work must
+complete before source or capability claims are updated.
+
+Mind-Seed remains the canonical Mind-Seed core; Orin does not automatically
+replace its cognition, memory, or orchestration components. No containment,
+runtime dependency, shared credentials, or unrestricted data access is implied.
+See [ADR-0003](architecture/decisions/ADR-0003-minimal-repository-growth.md).
+
+### E. Future component repositories
 
 The following are architectural domains, not repository reservations:
 
@@ -109,7 +125,7 @@ The following are architectural domains, not repository reservations:
 | UI / interfaces | `Mind-Seed` | a desktop, web, mobile, or embodied interface has a separately distributable artifact and compatibility contract |
 | Infrastructure | `.github` for governance; `OS` for platform/build base; `Mind-Seed` for application-side contracts | additional substantive infrastructure has an independent lifecycle beyond these existing boundaries |
 | Research / evaluation | `Mind-Seed` | a substantial reusable, rights-cleared benchmark or knowledge corpus has independent governance |
-| Website / distribution | none | an approved public beta creates a real website, download, or deployment boundary |
+| Website / distribution | `Mind-Seed` | an approved public beta creates a real website, download, or deployment boundary |
 | Security | cross-cutting | a substantive independently maintained security tool or policy artifact exists; security responsibility itself remains cross-cutting |
 
 Likely future names use `mind-seed-<component>`, for example
@@ -124,6 +140,7 @@ that identity when the exception and relationships are documented.
 | `.github` | Public | Organization metadata and standards | Active | Not applicable | `main` | `@jikovec` |
 | `Mind-Seed` | Private | Canonical core and Ardor lineage | Experimental | Internal / unreleased | `main` | `@jikovec` |
 | `OS` | Private | Operating-system platform and build base | Active | Private source release | `main` | `@jikovec` |
+| `Orin` | Private | Independent research project | Conceptual; source initialization unverified | Internal / unreleased | `main` | `@jikovec` |
 
 GitHub's API is authoritative for current existence, visibility, default branch,
 and repository state. The
@@ -147,6 +164,17 @@ classifications. `system-integration` means Mind Seed application-side integrati
 contracts, not the complete OS platform. The cross-cutting `security` domain
 models product/runtime security and does not assign exclusive organization-wide
 security ownership to Mind-Seed.
+
+## Next infrastructure boundary
+
+The owner has authorized minimal repository growth. The next justified private
+repository is `mind-seed-infrastructure`, for shared external-service operations
+with a lifecycle separate from the core, Orin, and the OS platform. It is a
+creation target, not a currently existing repository or deployed capability.
+Until creation and readback, it is intentionally absent from the live repository
+manifest. [Repository layout](repository-layout.md) defines ownership and
+activation requirements; [ADR-0003](architecture/decisions/ADR-0003-minimal-repository-growth.md)
+records the decision. Website source remains with Mind-Seed for now.
 
 ## Repository creation policy
 

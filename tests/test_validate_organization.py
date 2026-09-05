@@ -21,8 +21,8 @@ class ManifestTests(unittest.TestCase):
         with self.assertRaisesRegex(validator.ValidationError, message):
             validator.validate_manifest(self.manifest)
 
-    def test_current_three_repositories_pass(self):
-        self.assertEqual(validator.validate_manifest(self.manifest), (3, 13, 5))
+    def test_current_repository_manifest_passes(self):
+        self.assertEqual(validator.validate_manifest(self.manifest), (4, 13, 6))
 
     def test_inventory_is_not_hard_coded(self):
         repository = copy.deepcopy(self.manifest['repositories'][-1])
@@ -30,7 +30,7 @@ class ManifestTests(unittest.TestCase):
                           url='https://github.com/mind-seed-systems/mind-seed-test')
         repository['documentation'] = [{'repository': 'mind-seed-test', 'path': 'README.md'}]
         self.manifest['repositories'].append(repository)
-        self.assertEqual(validator.validate_manifest(self.manifest)[0], 4)
+        self.assertEqual(validator.validate_manifest(self.manifest)[0], 5)
 
     def test_invalid_lifecycle(self):
         self.fails(lambda m: m['repositories'][0].update(lifecycle='invalid'), 'JSON Schema')
