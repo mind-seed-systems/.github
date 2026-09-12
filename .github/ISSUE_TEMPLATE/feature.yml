@@ -1,0 +1,31 @@
+name: Feature request
+description: Suggest an improvement to a public artifact.
+title: "enhancement: "
+labels:
+  - enhancement
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What public-facing problem would this change solve?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed change
+      description: Describe the desired result without including private information.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+  - type: textarea
+    id: impact
+    attributes:
+      label: Security, privacy, and compatibility effects
+      description: Describe known effects or write "None known".
+    validations:
+      required: true

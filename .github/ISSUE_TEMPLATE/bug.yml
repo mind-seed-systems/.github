@@ -1,0 +1,53 @@
+name: Bug report
+description: Report a reproducible problem with a public artifact.
+title: "bug: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Do not include vulnerabilities, credentials, personal data, private source, or internal system details. Follow the security policy for sensitive reports.
+  - type: dropdown
+    id: area
+    attributes:
+      label: Affected area
+      options:
+        - Organization profile
+        - Documentation or policy
+        - Issue or pull-request template
+        - Workflow template
+        - Other public metadata
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version or commit
+      description: Provide a public version or commit when known.
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction
+      description: Provide the smallest safe reproduction using redacted or synthetic data.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety check
+      options:
+        - label: I removed sensitive and private information from this report.
+          required: true

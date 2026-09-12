@@ -1,0 +1,47 @@
+[
+  {
+    "name": "bug",
+    "color": "d73a4a",
+    "description": "Something is not working"
+  },
+  {
+    "name": "documentation",
+    "color": "0075ca",
+    "description": "Documentation or public policy improvement"
+  },
+  {
+    "name": "duplicate",
+    "color": "cfd3d7",
+    "description": "An existing issue or pull request already covers this"
+  },
+  {
+    "name": "enhancement",
+    "color": "a2eeef",
+    "description": "Improvement to public functionality or metadata"
+  },
+  {
+    "name": "good first issue",
+    "color": "7057ff",
+    "description": "Suitable for a first contribution"
+  },
+  {
+    "name": "help wanted",
+    "color": "008672",
+    "description": "Maintainer assistance is requested"
+  },
+  {
+    "name": "invalid",
+    "color": "e4e669",
+    "description": "This does not appear actionable"
+  },
+  {
+    "name": "question",
+    "color": "d876e3",
+    "description": "Further information is requested"
+  },
+  {
+    "name": "wontfix",
+    "color": "ffffff",
+    "description": "This is outside the intended scope"
+  }
+]
