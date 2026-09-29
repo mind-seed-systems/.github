@@ -1,31 +1,56 @@
-name: Feature request
-description: Suggest an improvement to a public artifact.
-title: "enhancement: "
+name: Feature or capability
+description: Propose a concrete capability or improvement in the target repository.
+title: "[Feature] "
 labels:
   - enhancement
 body:
-  - type: textarea
-    id: problem
+  - type: markdown
     attributes:
-      label: Problem
-      description: What public-facing problem would this change solve?
+      value: |
+        This form proposes work for triage. It does not grant implementation, merge, release, or deployment authority.
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Desired outcome
+      description: State the user or system outcome rather than only an implementation idea.
     validations:
       required: true
   - type: textarea
-    id: proposal
+    id: context
     attributes:
-      label: Proposed change
-      description: Describe the desired result without including private information.
+      label: Context and motivation
+      description: Why is this needed, and which current behavior or limitation does it address?
     validations:
       required: true
   - type: textarea
-    id: alternatives
+    id: acceptance
     attributes:
-      label: Alternatives considered
-  - type: textarea
-    id: impact
-    attributes:
-      label: Security, privacy, and compatibility effects
-      description: Describe known effects or write "None known".
+      label: Acceptance criteria
+      description: Concrete observable conditions for completion.
+      placeholder: |
+        - [ ] ...
+        - [ ] ...
     validations:
       required: true
+  - type: textarea
+    id: constraints
+    attributes:
+      label: Constraints and non-goals
+      description: Security, privacy, compatibility, architecture, deployment, or scope constraints.
+  - type: dropdown
+    id: documentation
+    attributes:
+      label: Documentation impact
+      options:
+        - Unknown / triage required
+        - None expected
+        - Documentation update required
+        - ADR or decision update required
+        - Operations or migration documentation required
+    validations:
+      required: true
+  - type: textarea
+    id: provenance
+    attributes:
+      label: Provenance and related work
+      description: Link safe references such as related Issues, PRs, reports, ADRs, or prior work.
