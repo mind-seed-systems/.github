@@ -1,5 +1,5 @@
 blank_issues_enabled: false
 contact_links:
-  - name: Report a security vulnerability
-    url: https://github.com/mind-seed-systems/.github/security/advisories/new
-    about: Send sensitive security reports privately.
+  - name: Security or sensitive report
+    url: https://github.com/mind-seed-systems/.github/blob/main/SECURITY.md
+    about: Review the organization security policy before reporting vulnerabilities, credentials, or sensitive information.
