@@ -1,0 +1,50 @@
+name: Research or architecture question
+description: Investigate an unresolved technical or architectural question before implementation.
+title: "[Research] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Research is a work proposal until triaged. Evidence, recommendations, decisions, and implementation authority remain separate.
+  - type: textarea
+    id: question
+    attributes:
+      label: Research question
+      description: State the question precisely enough that evidence can resolve or narrow it.
+    validations:
+      required: true
+  - type: textarea
+    id: downstream
+    attributes:
+      label: Downstream decision or use
+      description: What decision, benchmark, specification, or implementation will this research inform?
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Required evidence
+      description: What sources, repository evidence, experiments, comparisons, or falsification criteria are required?
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope and non-goals
+      description: Bound the research and identify deferred implementation, deployment, or other excluded work.
+    validations:
+      required: true
+  - type: textarea
+    id: deliverables
+    attributes:
+      label: Deliverables and acceptance criteria
+      placeholder: |
+        - [ ] ...
+        - [ ] ...
+    validations:
+      required: true
+  - type: textarea
+    id: provenance
+    attributes:
+      label: Provenance and related work
+      description: Link safe references such as related Issues, PRs, reports, ADRs, or prior research.
