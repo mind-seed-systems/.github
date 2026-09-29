@@ -1,6 +1,7 @@
 name: Task, documentation, or maintenance
 description: Track bounded engineering, documentation, migration, or maintenance work.
 title: "[Task] "
+type: Task
 body:
   - type: markdown
     attributes:

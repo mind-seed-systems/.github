@@ -1,6 +1,7 @@
 name: Bug or defect
 description: Report incorrect, unsafe, broken, or regressed behavior in the target repository.
 title: "[Bug] "
+type: Bug
 labels:
   - bug
 body:

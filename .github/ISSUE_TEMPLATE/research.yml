@@ -1,6 +1,7 @@
 name: Research or architecture question
 description: Investigate an unresolved technical or architectural question before implementation.
 title: "[Research] "
+type: Research
 body:
   - type: markdown
     attributes:

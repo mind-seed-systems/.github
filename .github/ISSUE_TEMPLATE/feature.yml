@@ -1,6 +1,7 @@
 name: Feature or capability
 description: Propose a concrete capability or improvement in the target repository.
 title: "[Feature] "
+type: Feature
 labels:
   - enhancement
 body:
