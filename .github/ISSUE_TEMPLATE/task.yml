@@ -1,0 +1,54 @@
+name: Task, documentation, or maintenance
+description: Track bounded engineering, documentation, migration, or maintenance work.
+title: "[Task] "
+type: Task
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This form proposes bounded work for triage. Repository visibility, credentials, and this Issue do not grant authority.
+  - type: textarea
+    id: objective
+    attributes:
+      label: Objective
+      description: What concrete result should exist when this work is complete?
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: Why is this needed, and what source or current state should be inspected first?
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      placeholder: |
+        - [ ] ...
+        - [ ] ...
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope, dependencies, and non-goals
+      description: Include known blockers/dependencies and anything explicitly excluded.
+  - type: dropdown
+    id: documentation
+    attributes:
+      label: Documentation impact
+      options:
+        - Documentation is the primary deliverable
+        - Documentation update required
+        - ADR or decision update required
+        - No documentation change expected
+        - Unknown / triage required
+    validations:
+      required: true
+  - type: textarea
+    id: provenance
+    attributes:
+      label: Provenance and related work
+      description: Link safe references such as related Issues, PRs, reports, or prior work.

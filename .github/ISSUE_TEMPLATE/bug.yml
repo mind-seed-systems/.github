@@ -1,53 +1,64 @@
-name: Bug report
-description: Report a reproducible problem with a public artifact.
-title: "bug: "
+name: Bug or defect
+description: Report incorrect, unsafe, broken, or regressed behavior in the target repository.
+title: "[Bug] "
+type: Bug
 labels:
   - bug
 body:
   - type: markdown
     attributes:
       value: |
-        Do not include vulnerabilities, credentials, personal data, private source, or internal system details. Follow the security policy for sensitive reports.
-  - type: dropdown
-    id: area
-    attributes:
-      label: Affected area
-      options:
-        - Organization profile
-        - Documentation or policy
-        - Issue or pull-request template
-        - Workflow template
-        - Other public metadata
-    validations:
-      required: true
-  - type: input
-    id: version
-    attributes:
-      label: Version or commit
-      description: Provide a public version or commit when known.
+        This form proposes work for triage. It does not grant authority. Respect the target repository's visibility and security policy; do not place secrets or inappropriate private data in an Issue.
   - type: textarea
-    id: reproduction
+    id: observed
     attributes:
-      label: Reproduction
-      description: Provide the smallest safe reproduction using redacted or synthetic data.
+      label: Observed behavior
+      description: What happened? Include the smallest useful reproduction and exact evidence.
     validations:
       required: true
   - type: textarea
     id: expected
     attributes:
       label: Expected behavior
+      description: What should happen instead?
     validations:
       required: true
   - type: textarea
-    id: actual
+    id: impact
     attributes:
-      label: Actual behavior
+      label: Impact and scope
+      description: What users, components, repositories, environments, or data are affected? State unknowns explicitly.
     validations:
       required: true
-  - type: checkboxes
-    id: safety
+  - type: textarea
+    id: acceptance
     attributes:
-      label: Safety check
+      label: Acceptance criteria
+      description: Concrete observable conditions that would demonstrate resolution.
+      placeholder: |
+        - [ ] ...
+        - [ ] ...
+    validations:
+      required: true
+  - type: textarea
+    id: non_goals
+    attributes:
+      label: Non-goals and protected scope
+      description: What must not change as part of this work?
+  - type: dropdown
+    id: documentation
+    attributes:
+      label: Documentation impact
       options:
-        - label: I removed sensitive and private information from this report.
-          required: true
+        - Unknown / triage required
+        - None expected
+        - Documentation update required
+        - ADR or decision update required
+        - Operations or migration documentation required
+    validations:
+      required: true
+  - type: textarea
+    id: provenance
+    attributes:
+      label: Provenance and related work
+      description: Link safe references such as related Issues, PRs, reports, or prior work.
