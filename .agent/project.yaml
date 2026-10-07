@@ -1,0 +1,33 @@
+schema_version: 1
+project:
+  id: github:mind-seed-systems/.github
+  name: Mind Seed Systems public organization metadata
+  type: documentation
+repository:
+  host: github
+  owner: mind-seed-systems
+  name: .github
+  default_branch: main
+  canonical_remote: origin
+organization:
+  id: github:mind-seed-systems
+  name: Mind Seed Systems
+ownership:
+  class: user-owned
+  basis: Owner-authorized bootstrap and repository owner namespace
+agent:
+  instructions: AGENTS.md
+  canonical_skills: skills/
+  project_specific_skills: skills/project/
+environment:
+  primary_runtime: Python 3 for toolkit checks
+  package_manager: null
+  required_tools: [git, python3, PyYAML]
+  source_files: [scripts/requirements-toolkit.txt, .github/workflows/agent-toolkit.yml]
+integrations:
+  directory: .agent/integrations/
+workflows:
+  directory: .agent/workflows/
+mind_seed:
+  enabled: true
+  binding: .mind-seed/project.yaml

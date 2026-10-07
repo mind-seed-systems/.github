@@ -1,0 +1,16 @@
+schema_version: 1
+enabled: false
+backend: null
+project_id: github:mind-seed-systems/.github
+scopes:
+  organization: null
+  project: null
+  repository: null
+permissions:
+  read: []
+  write: []
+mutation:
+  authority: none
+  promotion_requires_authority: true
+authority_contract: ../.agent/contracts/memory.md
+scope_contract: ../.agent/contracts/scopes.md

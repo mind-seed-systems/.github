@@ -1,0 +1,6 @@
+schema_version: 1
+integrations:
+  github:
+    enabled: true
+    repository: mind-seed-systems/.github
+    configuration: ../.agent/integrations/README.md

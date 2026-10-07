@@ -1,0 +1,20 @@
+schema_version: 1
+project_id: github:mind-seed-systems/.github
+organization_id: github:mind-seed-systems
+identity_authority: repository
+registry:
+  enabled: false
+  canonical: false
+  project_id: null
+  organization_id: null
+  reconciliation: unresolved-no-configured-public-endpoint
+repository:
+  binding: ../.agent/project.yaml
+relationships:
+  binding: relationships.yaml
+scopes:
+  binding: scopes.yaml
+memory:
+  binding: memory.yaml
+integrations:
+  binding: integrations.yaml

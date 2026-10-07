@@ -1,0 +1,18 @@
+schema_version: 1
+project_id: github:mind-seed-systems/.github
+bindings:
+  global:
+    id: null
+  organization:
+    id: null
+  project:
+    id: null
+  repository:
+    id: null
+  agent:
+    dynamic: true
+  task:
+    dynamic: true
+  session:
+    dynamic: true
+external_scope_resolution: unresolved-no-configured-backend

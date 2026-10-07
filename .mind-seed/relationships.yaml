@@ -1,0 +1,6 @@
+schema_version: 1
+project_id: github:mind-seed-systems/.github
+relationships:
+  - type: belongs-to
+    target_id: github:mind-seed-systems
+    authority: repository
