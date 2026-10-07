@@ -17,3 +17,7 @@ Public resources:
 This repository intentionally excludes private project inventories, internal
 architecture, infrastructure details, operational evidence, credentials, and
 personal information.
+
+Repository development agents start at [AGENTS.md](AGENTS.md). The
+[agent toolkit](.agent/README.md) provides portable workflows and thin provider
+adapters while preserving the public-information boundary above.
