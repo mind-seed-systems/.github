@@ -1,6 +1,7 @@
 ---
 name: publish
 description: Force-publish the intended state by bypassing only eligible repository or deployment-process gates while preserving external platform protections.
+disable-model-invocation: true
 ---
 
 Read and follow `skills/publish/SKILL.md` from the repository root before acting.

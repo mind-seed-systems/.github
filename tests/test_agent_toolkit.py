@@ -52,6 +52,28 @@ class ToolkitValidationTests(unittest.TestCase):
         with self.assertRaisesRegex(Invalid, 'adapter policy drift'):
             validate(self.root)
 
+    def test_rejects_missing_claude_invocation_gate(self):
+        self.replace('.claude/skills/deploy/SKILL.md', 'disable-model-invocation: true\n', '')
+        with self.assertRaisesRegex(Invalid, 'plus disable-model-invocation'):
+            validate(self.root)
+
+    def test_rejects_false_claude_invocation_gate(self):
+        self.replace('.claude/skills/release/SKILL.md', 'disable-model-invocation: true',
+                     'disable-model-invocation: false')
+        with self.assertRaisesRegex(Invalid, 'disable-model-invocation must be True'):
+            validate(self.root)
+
+    def test_rejects_invocation_gate_outside_gated_claude_adapters(self):
+        for path in ('.claude/skills/build/SKILL.md', '.agents/skills/deploy/SKILL.md',
+                     'skills/deploy/SKILL.md'):
+            with self.subTest(path=path):
+                target = self.root / path
+                original = target.read_text()
+                target.write_text(original.replace('\n---\n', '\ndisable-model-invocation: true\n---\n', 1))
+                with self.assertRaisesRegex(Invalid, 'expected portable name/description'):
+                    validate(self.root)
+                target.write_text(original)
+
     def test_rejects_missing_adapter(self):
         (self.root / '.agents/skills/fix/SKILL.md').unlink()
         with self.assertRaisesRegex(Invalid, 'missing'):
