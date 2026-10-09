@@ -17,7 +17,11 @@ Aliases `develop` and `reconcile` select existing workflows rather than copies.
   compatibility symlink to that directory, satisfying older discovery surfaces
   without a second implementation. Use `$build` or request the workflow by name.
 - Claude Code: `.claude/skills/` contains thin adapters; `CLAUDE.md` imports
-  `AGENTS.md`. Use `/build` or request the workflow by name.
+  `AGENTS.md`. Use `/build` or request the workflow by name. The `release`,
+  `deploy` and `publish` adapters also set `disable-model-invocation: true`, so
+  Claude Code loads them only on an explicit `/release`, `/deploy` or `/publish`.
+  Canonical skills and Codex adapters keep portable name/description metadata,
+  and validation enforces both forms.
 - Other agents: read `AGENTS.md`, then `skills/<name>/SKILL.md` directly.
 
 All paths in adapter prose are relative to the repository root. Native discovery

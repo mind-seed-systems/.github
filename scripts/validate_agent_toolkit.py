@@ -12,6 +12,9 @@ from urllib.parse import unquote
 import yaml
 
 BASELINE = frozenset('build investigate research verify review fix release deploy publish push pull'.split())
+# Claude Code loads these adapters only on an explicit /name invocation.
+CLAUDE_USER_ONLY = frozenset('release deploy publish'.split())
+CLAUDE_GATE = {'disable-model-invocation': True}
 CONTRACTS = frozenset('core authorization verification git-github deployment handoff memory scopes'.split())
 REQUIRED = (
     ['AGENTS.md', 'CLAUDE.md', '.agent/README.md', '.agent/project.yaml',
@@ -53,12 +56,19 @@ def mapping(path):
     return result
 
 
-def frontmatter(path):
+def frontmatter(path, provider_fields=None):
+    provider_fields = provider_fields or {}
     raw = path.read_text()
     require(raw.startswith('---\n'), f'{path}: missing frontmatter')
     parts = raw.split('---\n', 2)
     require(len(parts) == 3, f'{path}: unclosed frontmatter')
     data = yaml.load(parts[1], Loader=UniqueLoader)
+    if provider_fields:
+        require(isinstance(data, dict) and set(data) == {'name', 'description'} | set(provider_fields),
+                f'{path}: expected name/description plus {", ".join(provider_fields)}')
+        for key, value in provider_fields.items():
+            require(data[key] is value, f'{path}: {key} must be {value!r}')
+        data = {key: value for key, value in data.items() if key not in provider_fields}
     require(isinstance(data, dict) and set(data) == {'name', 'description'},
             f'{path}: expected portable name/description')
     require(data['name'] == path.parent.name, f'{path}: name differs from directory')
@@ -68,9 +78,10 @@ def frontmatter(path):
     return data
 
 
-def adapter_text(name, description, canonical):
+def adapter_text(name, description, canonical, gated=False):
+    gate = 'disable-model-invocation: true\n' if gated else ''
     return (
-        f'---\nname: {name}\ndescription: {description}\n---\n\n'
+        f'---\nname: {name}\ndescription: {description}\n{gate}---\n\n'
         f'Read and follow `{canonical}` from the repository root before acting.\n'
         'Also follow `AGENTS.md` and applicable scoped instructions.\n'
         'This is a discovery adapter only; canonical workflow policy lives in `skills/`.\n'
@@ -150,9 +161,11 @@ def validate(root):
         descriptions.add(data['description'])
         for provider in ('.agents', '.claude'):
             adapter = root / provider / 'skills' / name / 'SKILL.md'
+            gated = provider == '.claude' and name in CLAUDE_USER_ONLY
             require(adapter.is_file(), f'missing {adapter}')
-            require(frontmatter(adapter) == data, f'{adapter}: metadata drift')
-            require(adapter.read_text() == adapter_text(name, data['description'], path.relative_to(root).as_posix()),
+            require(frontmatter(adapter, CLAUDE_GATE if gated else None) == data, f'{adapter}: metadata drift')
+            require(adapter.read_text() == adapter_text(name, data['description'], path.relative_to(root).as_posix(),
+                                                        gated),
                     f'{adapter}: adapter policy drift')
     require(BASELINE <= names, 'missing baseline skill')
     for provider in ('.agents', '.claude'):

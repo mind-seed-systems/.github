@@ -1,6 +1,7 @@
 ---
 name: deploy
 description: Deploy the intended repository state through its normal governed deployment process and verify the resulting live state.
+disable-model-invocation: true
 ---
 
 Read and follow `skills/deploy/SKILL.md` from the repository root before acting.
