@@ -14,12 +14,13 @@ fetch/pull, safe rebase/merge, push, PR creation/update, task-related CI/review
 remediation, ordinary Issue/Project maintenance, merge after applicable
 requirements pass, and cleanup of completed task branches.
 
-`jikovec/*`, `mind-seed-systems/*`, and other proven owner-controlled repositories
-are the bootstrap's user-owned class. This local contract is not a delegation
-into those other repositories: discover their effective governance first.
-Dropie and VaultGuard follow their own repository/organization rules. Unknown
-ownership requires evidence; neither a namespace guess nor administrator access
-is sufficient to establish authority outside this declared repository.
+Repositories of this organization, and other repositories proven to be controlled
+by its owner, are the bootstrap's user-owned class. This local contract is not a
+delegation into those other repositories: discover their effective governance
+first. Repositories of other organizations and products follow their own
+repository/organization rules. Unknown ownership requires evidence; neither a
+namespace guess nor administrator access is sufficient to establish authority
+outside this declared repository.
 
 ## Boundaries
 
