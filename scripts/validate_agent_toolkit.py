@@ -108,6 +108,11 @@ def validate(root):
             'Mind-Seed discovery drift')
     for rel in project['environment']['source_files']:
         require((root / rel).is_file(), f'missing environment source {rel}')
+    # CodeQL's GitHub Actions analysis reads .github/workflows/, never
+    # workflow-templates/, and fails rather than skips when it finds no file.
+    require(any(path.is_file() for suffix in ('yml', 'yaml')
+                for path in (root / '.github/workflows').glob(f'*.{suffix}')),
+            'no workflow under .github/workflows/ for code scanning to analyze')
     # These are intentionally public, unconnected bindings. Adoption of a real
     # backend needs a reviewed contract/validator change, not just a flipped flag.
     bindings = {name: mapping(root / f'.mind-seed/{name}.yaml') for name in

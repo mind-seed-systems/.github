@@ -103,6 +103,25 @@ class ToolkitValidationTests(unittest.TestCase):
         with self.assertRaisesRegex(Invalid, 'compatibility link drift'):
             validate(self.root)
 
+    def test_rejects_absent_code_scanning_workflow(self):
+        # The layout that failed CodeQL: a workflow template and no workflow.
+        workflows = self.root / '.github/workflows'
+        template = self.root / 'workflow-templates/repository-hygiene.yml'
+        template.parent.mkdir()
+        (workflows / 'agent-toolkit.yml').rename(template)
+        self.replace('.agent/project.yaml', ', .github/workflows/agent-toolkit.yml', '')
+        with self.assertRaisesRegex(Invalid, 'no workflow under .github/workflows/'):
+            validate(self.root)
+        workflows.rmdir()  # Git would not keep the empty directory either.
+        with self.assertRaisesRegex(Invalid, 'no workflow under .github/workflows/'):
+            validate(self.root)
+
+    def test_accepts_yaml_workflow_suffix(self):
+        workflow = self.root / '.github/workflows/agent-toolkit.yml'
+        workflow.rename(workflow.with_suffix('.yaml'))
+        self.replace('.agent/project.yaml', 'agent-toolkit.yml', 'agent-toolkit.yaml')
+        self.assertEqual(validate(self.root), 11)
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -8,6 +8,14 @@ of an active workflow. Use Git and authenticated `gh` or equivalent APIs.
 Credentials come from the user's existing credential manager/CLI or CI-provided
 scoped token; never commit them or print authentication material.
 
+Code scanning is CodeQL default setup: a repository setting with no tracked
+workflow or configuration file, so read its enabled languages and results from
+GitHub. Its GitHub Actions analysis reads workflows in `.github/workflows/` and
+`.github/reusable_workflows/` and action files such as `action.yml`.
+`workflow-templates/` is outside those paths and gets no CodeQL analysis here.
+With no file to read, the analysis fails instead of reporting an empty result,
+so the toolkit validator requires a workflow under `.github/workflows/`.
+
 Read-only inspections are separate from mutation. Writes follow the authorization
 and Git/GitHub contracts, including actual executor and authority in authored
 GitHub text. Integration availability never creates permission.
